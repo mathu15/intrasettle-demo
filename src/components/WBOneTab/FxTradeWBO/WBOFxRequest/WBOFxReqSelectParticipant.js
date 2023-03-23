@@ -2,7 +2,7 @@ import React from "react";
 import { Dropdown } from "primereact/dropdown";
 import "../../../../components/dropdown.css";
 // select the wholesale bank to transfer asset
-const WBOFxSelectParticipant = ({ data, setData }) => {
+const WBOFxSelectParticipant = ({ data, setData, entityaccounts }) => {
   const dropdownValues = [
     { label: "WHOLESALEBANKTWO,CAC-SUB901-0002" },
     { label: "WHOLESALEBANKTHREE,CAC-SUB901-0003" },
@@ -19,7 +19,7 @@ const WBOFxSelectParticipant = ({ data, setData }) => {
           <Dropdown
             value={data.notary}
             onChange={(e) => setData({ ...data, notary: e.target.value })}
-            options={dropdownValues}
+            options={entityaccounts}
             optionLabel="label"
             placeholder={dropplaceholder}
             style={{ fontSize: "1.4rem" }}

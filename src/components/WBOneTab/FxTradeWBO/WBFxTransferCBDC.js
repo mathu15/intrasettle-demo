@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import { Steps } from "primereact/steps";
 import { Button } from "primereact/button";
@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import InformationSubmitted from "../../CBtabmenu/CBHome/CBDCManager/DefCBDCType/InformationSubmitted";
 
-import { IssuanceServiceWBFx } from "./issuanceServiceWBFx";
+import { IssuanceServiceWBFx } from "./IssuanceServiceWBFx";
 import WBOFxSelecAsset from "./WBOFxTransfer/WBOFxSelecAsset";
 import WBOFxEnterAmount from "./WBOFxTransfer/WBOFxEnterAmount";
 import WBOFxSelectExRate from "./WBOFxTransfer/WBOFxSelectExRate";
@@ -17,6 +17,7 @@ import WBOFxSelecToAcc from "./WBOFxTransfer/WBOFxSelecToAcc";
 const WBOFxTransferCBDC = () => {
   //curent page for  steps is set to default index 0
   const [activeIndex, setActiveIndex] = useState(0);
+  const issuanceservice = new IssuanceServiceWBFx();
 
   //initial state fo user input
   const [data, setData] = useState({
@@ -60,6 +61,27 @@ const WBOFxTransferCBDC = () => {
     toaccount: "",
   });
 
+  const [assets, setAssets] = useState([]);
+  const [asset, setAsset] = useState({});
+
+  useEffect(() => {
+    issuanceservice.getassets().then((data) => {
+      var xx = data.map(function (value) {
+        return {
+          label: value.issuetype,
+          id: value.id,
+          entityid: value.entityid,
+          issueaccountnumber: value.issueaccountnumber,
+          assetid: value.assetid,
+          issuetype: value.issuetype,
+          amount: value.amount,
+        };
+      });
+
+      setAssets(xx);
+    });
+  }, []); //
+
   //setting active index tab for steps pages
   const pageDisplay = () => {
     if (activeIndex === 0) {
@@ -67,7 +89,14 @@ const WBOFxTransferCBDC = () => {
     } else if (activeIndex === 1) {
       return <WBOFxSelecToAcc data={data} setData={setData} />;
     } else if (activeIndex === 2) {
-      return <WBOFxSelecAsset data={data} setData={setData} />;
+      return (
+        <WBOFxSelecAsset
+          data={data}
+          setData={setData}
+          assets={assets}
+          setAsset={setAsset}
+        />
+      );
     } else if (activeIndex === 3) {
       return <WBOFxEnterAmount data={data} setData={setData} />;
     } else if (activeIndex === 4) {
@@ -90,29 +119,12 @@ const WBOFxTransferCBDC = () => {
   // const account = 'CAC-SUB901-0001';
   const issuanceServiceWBFx = new IssuanceServiceWBFx();
   const transferassets = async () => {
-    if (data.fromaccount.label === "Operation Account") {
-      issuanceServiceWBFx.sendoperationtotrader(
-        // data.fromaccount,
-        // data.toaccount,
-        data.amount,
-        myArray[1],
-        myArray[0]
-
-        // wholesale[1],
-        // account
-      );
-    } else {
-      issuanceServiceWBFx.sendtradertooperation(
-        // data.fromaccount,
-        // data.toaccount,
-        data.amount,
-        myArray[1],
-        myArray[0]
-
-        // wholesale[1],
-        // account
-      );
-    }
+    //if (data.fromaccount.label === "Operation Account") {
+    await issuanceServiceWBFx.sendoperationtotrader(
+      asset.assetid,
+      asset.issuetype,
+      data.amount
+    );
   };
 
   const showSuccess = () => {
@@ -212,7 +224,7 @@ const WBOFxTransferCBDC = () => {
                   setActiveIndex((curPage) => curPage + 1);
                 }
               }}
-              label={activeIndex === wizardItems.length - 1 ? "ISSUE" : "NEXT"}
+              label={activeIndex === wizardItems.length - 1 ? "SEND" : "NEXT"}
               style={{
                 display: activeIndex === wizardItems.length ? "none" : "block",
               }}

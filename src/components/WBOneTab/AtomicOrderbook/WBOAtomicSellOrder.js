@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { InputNumber } from "primereact/inputnumber";
 
-const WBOAtomicSellOrder = ({ price }) => {
+const WBOAtomicSellOrder = ({ price, testpair }) => {
   const [displayBasic, setDisplayBasic] = useState(false);
   const [data, setData] = useState({
     price: price,
@@ -26,9 +26,21 @@ const WBOAtomicSellOrder = ({ price }) => {
 
   console.log("data", data);
 
+  console.log("pair");
+  console.log(testpair);
   const issuanceServiceWBOB = new IssuanceServiceWBOB();
   const placeatomsellorder = async () => {
-    issuanceServiceWBOB.placeatomsellorder(data.price, data.volume);
+    var broken = testpair.split("-");
+    if (broken.length != 2) {
+      alert("invalid pairname");
+    }
+    issuanceServiceWBOB.placeatomsellorder(
+      testpair,
+      broken[0],
+      broken[1],
+      data.price,
+      data.volume
+    );
   };
   const showSuccess = () => {
     toast.success("created successfully", {
@@ -98,7 +110,7 @@ const WBOAtomicSellOrder = ({ price }) => {
           <InputNumber
             id="amount"
             value={data.total}
-            onChange={(e) =>  setData({ ...data, total: e.value })}
+            onChange={(e) => setData({ ...data, total: e.value })}
             showButtons
             mode="decimal"
             min={0}
@@ -158,6 +170,11 @@ const WBOAtomicSellOrder = ({ price }) => {
               <Button
                 onClick={() => setDisplayBasic(true)}
                 label="SELL"
+                className="p-button-danger font-bold"
+              />
+              <Button
+                onClick={() => placeatomsellorder()}
+                label="BELL"
                 className="p-button-danger font-bold"
               />
             </div>

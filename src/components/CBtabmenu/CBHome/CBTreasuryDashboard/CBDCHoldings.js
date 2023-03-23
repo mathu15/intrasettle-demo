@@ -5,7 +5,7 @@ import { IssuanceService } from "../IssuanceService";
 const urlname = "https://sailsg1.thebsv.tech";
 
 // page for displaying chaertdata
-const CBTDMoneySupply = ({ data1, setData1, user }) => {
+const CBDCHoldings = ({ data1, setData1, user }) => {
   // initail value for chart data
 
   const [data, setData] = useState();
@@ -107,7 +107,7 @@ const CBTDMoneySupply = ({ data1, setData1, user }) => {
           <div className=" col-12 lg:col-6 xl:col-3">
             <div className=" border-1 border-100 bg-gray-800 card mt-6 text-center">
               <div className=" text-900 text-center font-medium text-2xl mb-3">
-                Bank
+                BANK
               </div>
               {issuetype.map((cdata, index) => (
                 <div className="list-disc">
@@ -153,4 +153,4 @@ const CBTDMoneySupply = ({ data1, setData1, user }) => {
   );
 };
 
-export default CBTDMoneySupply;
+export default CBDCHoldings;

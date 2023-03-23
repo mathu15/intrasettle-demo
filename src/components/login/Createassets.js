@@ -156,54 +156,5 @@ export default function Createassets({ setToken }) {
         </div>
       </div>
     </div>
-
-    // <div className="login-wrapper">
-    //   <h1>Central bank create assets </h1>
-
-    //   <label>
-    //     <p>Assets </p>
-    //     <Dropdown
-    //       optionLabel="issuetype"
-    //       value={symbol}
-    //       options={assets}
-    //       onChange={(e) => setSymbol(e.target.value)}
-    //       placeholder="Select a asset"
-    //     />
-    //   </label>
-
-    //   <label>
-    //     <p>Number of assets </p>
-
-    //     <input
-    //       type="text"
-    //       placeholder="amount"
-    //       onChange={(e) => setAmount(e.target.value)}
-    //     />
-    //   </label>
-
-    //   <label>
-    //     <p>New asset {newsymbol}</p>
-
-    //     <input
-    //       type="text"
-    //       placeholder="new symbol"
-    //       onChange={(e) => setNewsymbol(e.target.value)}
-    //     />
-    //   </label>
-
-    //   <div>
-    //     <label>
-    //       <p>Status</p>
-    //       {error}
-    //     </label>
-    //   </div>
-    //   <div>
-    //     <label>
-    //       <button onClick={() => createasset()}>Create asset </button>
-    //       <button onClick={() => getdata1()}>Getdata</button>
-    //       <button onClick={() => getassets1()}>Getassets</button>
-    //     </label>
-    //   </div>
-    // </div>
   );
 }

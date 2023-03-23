@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { IssuanceServiceWBFx } from "./IssuanceServiceWBFx";
+
 import { FilterMatchMode, FilterOperator } from "primereact/api";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -8,43 +8,35 @@ import { InputNumber } from "primereact/inputnumber";
 
 import { Calendar } from "primereact/calendar";
 import { NavLink } from "react-router-dom";
+import { IssuanceServiceWBFx } from "./IssuanceServiceWBFx";
 
-const WBFxMAC = () => {
+const WBOpCbdcStates = () => {
   const [data, setData] = useState(null);
 
   const [filters, setFilters] = useState(null);
   const [loading, setLoading] = useState(true);
-  const issuanceservice = new IssuanceServiceWBFx();
 
   const statuses = ["coinbase", "issue"];
-  const issuerstatus = ["BBI", "CBI", "GBI", "RBI"];
-  const assetidstatus = [
-    "ASSET-BND-0001",
-    "ASSET-BND-0002",
-    "ASSET-BND-0003",
-    "ASSET-BND-0004",
-    "ASSET-BND-0005",
-    "ASSET-BND-0006",
-  ];
+  var issuanceservice = new IssuanceServiceWBFx();
   useEffect(() => {
     //fetch the asset data from api
     // const url = "https://thebsv.tech/centralbank/getassets";
     /*
     const urll =
-      "https://sailsg1.thebsv.tech/centralbank/gettransactions/CAC-CEN901-0001";
+      "https://thebsv.tech/centralbank/gettransactions/CAC-SUB901-0001";
     fetch(urll)
       .then((response) => response.json())
 	  */
     issuanceservice
-      .getcentralbanktransactions()
+      .gettradertransactions()
       .then((json) => {
         console.log("json", json);
-        const sorted = json.transactions;
+        //setData(getCustomers(json.subscribertrans.centralsubcribertrans));
+        const sorted = json.tradesettlertrans;
         const last = sorted.sort((a, b) => {
           return a > b ? 1 : -1;
         });
         setData(last);
-        // setData(json.centraltrans.centralcentraltrans);
         // .issuertrans.centralissuetrans
         setLoading(false);
       })
@@ -72,6 +64,21 @@ const WBFxMAC = () => {
   // initFilters();
   //   }, []);
 
+  const getCustomers = (data) => {
+    return [...(data || [])].map((d) => {
+      d.date = new Date(d.date);
+      return d;
+    });
+  };
+
+  // const formatDate = (value) => {
+  //   return value.toLocaleDateString("en-US", {
+  //     day: "2-digit",
+  //     month: "2-digit",
+  //     year: "numeric",
+  //   });
+  // };
+
   const formatCurrency = (value) => {
     return value.toFixed(2);
   };
@@ -79,11 +86,11 @@ const WBFxMAC = () => {
   const initFilters = () => {
     setFilters({
       global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-      issuetype: {
+      symbol: {
         operator: FilterOperator.AND,
         constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
       },
-      assetid: {
+      fromaccountnumber: {
         operator: FilterOperator.AND,
         constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
       },
@@ -109,7 +116,7 @@ const WBFxMAC = () => {
         operator: FilterOperator.AND,
         constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
       },
-      count: {
+      operation: {
         operator: FilterOperator.AND,
         constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
       },
@@ -155,7 +162,7 @@ const WBFxMAC = () => {
     return (
       <Calendar
         value={options.value}
-        onChange={(e) => options.filterCallback((e.value, options.index))}
+        onChange={(e) => options.filterCallback(e.value, options.index)}
         dateFormat="mm/dd/yy"
         placeholder="mm/dd/yyyy"
         mask="99/99/9999"
@@ -179,22 +186,48 @@ const WBFxMAC = () => {
     );
   };
 
-  const issuerBodyTemplate = (rowData) => {
+  const operationBodyTemplate = (rowData) => {
+    return rowData.operation;
+  };
+
+  const countFilterTemplate = (options) => {
     return (
-      // className={`customer-badge status-${rowData.type}`}
-      <span>{rowData.issuer}</span>
+      <InputNumber
+        value={options.value}
+        onChange={(e) => options.filterCallback(e.value, options.index)}
+        // mode="currency"
+        // currency="USD"
+        // locale="en-US"
+      />
     );
   };
-  const issuerItemTemplate = (option) => {
-    return <span className={`customer-badge status-${option}`}>{option}</span>;
+
+  const statusBodyTemplate = (rowData) => {
+    return (
+      <span className={`customer-badge status-${rowData.type}`}>
+        {rowData.activitytype}
+      </span>
+    );
   };
-  const issuerFilterTemplate = (options) => {
+
+  const txidBodyTemplate = (rowData) => {
+    var linktostas = ""; //"https://taalnet.whatsonchain.com/tx/"+rowData.transactionid;
+    return (
+      <span className={`customer-badge status-${rowData.type}`}>
+        <a href={linktostas} target="_blank">
+          {rowData.id}
+        </a>
+      </span>
+    );
+  };
+
+  const statusFilterTemplate = (options) => {
     return (
       <Dropdown
         value={options.value}
-        options={issuerstatus}
+        options={statuses}
         onChange={(e) => options.filterCallback(e.value, options.index)}
-        itemTemplate={issuerItemTemplate}
+        itemTemplate={statusItemTemplate}
         placeholder="Select a Status"
         className="p-column-filter "
         showClear
@@ -202,24 +235,8 @@ const WBFxMAC = () => {
     );
   };
 
-  const assetidBodyTemplate = (rowData) => {
-    return <span>{rowData.assetid}</span>;
-  };
-  const assetidItemTemplate = (option) => {
+  const statusItemTemplate = (option) => {
     return <span className={`customer-badge status-${option}`}>{option}</span>;
-  };
-  const assetidFilterTemplate = (options) => {
-    return (
-      <Dropdown
-        value={options.value}
-        options={assetidstatus}
-        onChange={(e) => options.filterCallback(e.value, options.index)}
-        itemTemplate={assetidItemTemplate}
-        placeholder="Select a Status"
-        className="p-column-filter "
-        showClear
-      />
-    );
   };
 
   return (
@@ -241,15 +258,6 @@ const WBFxMAC = () => {
             // style={{ fontSize: "1.4rem" }}
           >
             <Column
-              header="Transaction Date"
-              filterField="updatedAt"
-              dataType="date"
-              style={{ minWidth: "10rem" }}
-              body={dateBodyTemplate}
-              filter
-              filterElement={dateFilterTemplate}
-            />
-            <Column
               field="issuetype"
               header="Token Name"
               filter
@@ -257,32 +265,25 @@ const WBFxMAC = () => {
               style={{ minWidth: "12rem" }}
             />
             <Column
-              field="assetid"
-              header="Assetid"
-              filterMenuStyle={{ width: "14rem" }}
-              style={{ minWidth: "12rem" }}
-              body={assetidBodyTemplate}
+              field="operationaccountnumber"
+              header="From"
               filter
-              filterElement={assetidFilterTemplate}
+              filterPlaceholder="Search by name"
+              style={{ minWidth: "12rem" }}
             />
             <Column
-              field="issuer"
-              header="Initiator"
-              filterMenuStyle={{ width: "14rem" }}
+              field="traderaccountnumber"
+              header="To"
+              filter
+              filterPlaceholder="Search by name"
               style={{ minWidth: "12rem" }}
-              body={issuerBodyTemplate}
-              filter
-              filterElement={issuerFilterTemplate}
             />
-
             <Column
-              header="Amount"
-              filterField="amount"
-              dataType="numeric"
-              style={{ minWidth: "10rem" }}
-              body={balanceBodyTemplate}
+              field={txidBodyTemplate}
+              header="Transfer id"
               filter
-              filterElement={balanceFilterTemplate}
+              filterPlaceholder="Search by name"
+              style={{ minWidth: "12rem" }}
             />
 
             <Column
@@ -294,6 +295,31 @@ const WBFxMAC = () => {
               filter
               filterElement={dateFilterTemplate}
             />
+            <Column
+              header="Transaction Date"
+              filterField="updatedAt"
+              dataType="date"
+              style={{ minWidth: "10rem" }}
+              body={dateBodyTemplate}
+              filter
+              filterElement={dateFilterTemplate}
+            />
+            <Column
+              header="Amount"
+              filterField="amount"
+              dataType="numeric"
+              style={{ minWidth: "10rem" }}
+              body={balanceBodyTemplate}
+              filter
+              filterElement={balanceFilterTemplate}
+            />
+            <Column
+              field="operation"
+              header="Operation"
+              filter
+              filterPlaceholder="Search by name"
+              style={{ minWidth: "12rem" }}
+            />
           </DataTable>
         </div>
       </div>
@@ -301,4 +327,4 @@ const WBFxMAC = () => {
   );
 };
 
-export default WBFxMAC;
+export default WBOpCbdcStates;

@@ -4,7 +4,7 @@ import { Route, useHistory } from "react-router-dom";
 
 import CBTDBonds from "./CBHome/CBTreasuryDashboard/CBTDBonds";
 import CBTDcbdcassets from "./CBHome/CBTreasuryDashboard/CBTDcbdcassets";
-import CBTDMoneySupply from "./CBHome/CBTreasuryDashboard/CBTDMoneySupply";
+import CBDCHoldings from "./CBHome/CBTreasuryDashboard/CBDCHoldings";
 
 const CBTreasuryDashboard = () => {
   const [activeIndex, setActiveIndex] = useState();
@@ -22,7 +22,7 @@ const CBTreasuryDashboard = () => {
         history.push("/central-bank/treasury-dashboard/cbdc-assets"),
     },
     {
-      label: "MONEY SUPPLY",
+      label: "CBDC HOLDINGS",
       icon: "pi text-xl pi-fw pi-user",
       command: () =>
         history.push("/central-bank/treasury-dashboard/money-supply"),
@@ -31,7 +31,7 @@ const CBTreasuryDashboard = () => {
 
   return (
     <div className="card ">
-      <h5 className="text-3xl p-5">Member Controls</h5>
+      <h5 className="text-3xl p-5">Treasury Dashboard</h5>
       <TabMenu
         model={wizardItems}
         activeIndex={activeIndex}
@@ -50,7 +50,7 @@ const CBTreasuryDashboard = () => {
       />
       <Route
         path={"/central-bank/treasury-dashboard/money-supply"}
-        component={CBTDMoneySupply}
+        component={CBDCHoldings}
       />
     </div>
   );

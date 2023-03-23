@@ -31,37 +31,37 @@ const CentralBank = () => {
   const wizardItems = [
     {
       label: "HOME",
-      icon: "pi text-2xl  pi-fw pi-th-large",
+      icon: "pi text-2xl text-blue-500 pi-fw pi-th-large",
       command: () => history.push("/central-bank"),
     },
     {
       label: "CBDC MANAGER",
-      icon: "pi text-2xl pi-fw pi-dollar",
+      icon: "pi text-2xl text-blue-500 pi-fw pi-dollar",
       command: () => history.push("/central-bank/cbdc-manager"),
     },
     {
       label: "MEMBER CONTROLS",
-      icon: "pi text-2xl pi-fw pi-cog",
+      icon: "pi text-2xl text-blue-500 pi-fw pi-cog",
       command: () => history.push("/central-bank/member-controls"),
     },
     {
       label: "INCOMING REQUESTS",
-      icon: "pi text-2xl pi-fw pi-download",
+      icon: "pi text-2xl text-blue-500 pi-fw pi-download",
       command: () => history.push("/central-bank/incoming-requests"),
     },
     {
       label: "TREASURY DASHBOARD",
-      icon: "pi text-2xl pi-fw pi-chart-pie",
+      icon: "pi text-2xl text-blue-500 pi-fw pi-chart-pie",
       command: () => history.push("/central-bank/treasury-dashboard"),
     },
     {
       label: "TRANSACTION DASHBOARD",
-      icon: "pi text-2xl pi-fw pi-book",
+      icon: "pi text-2xl text-blue-500 pi-fw pi-book",
       command: () => history.push("/central-bank/moneyswipe-dashboard"),
     },
     {
       label: "TOPUP ISSUANCE",
-      icon: "pi text-2xl pi-fw pi-eye",
+      icon: "pi text-2xl text-blue-500 pi-fw pi-eye",
       command: () => history.push("/central-bank/visibility-reissuance"),
     },
   ];
@@ -84,26 +84,7 @@ const CentralBank = () => {
         }
         // model={items.cbank}
         end={
-          // <div className="flex justify-content-between">
-          //   <div className="flex">
-          //     <BsGlobe2 className="text-3xl mr-3 text-blue-500" />
-          //     <span className="text-2xl">
-          //       The {user.organization} , Powered by Intrasettle
-          //     </span>
-          //   </div>
-          //   <div>
-          //     <NavLink to="/">
-          //       <span className="text-xl">LOGOUT</span>
-          //     </NavLink>
-          //     <button
-          //       className="p-link layout-topbar-button"
-          //       // onClick={props.onMobileSubTopbarMenuClick}
-          //     >
-          //       <i className=" pi pi-power-off text-2xl" />
-          //       {/* <span>Logout</span> */}
-          //     </button>
-          //   </div>
-          // </div>
+       
           <>
             <NavLink to="/cb-login">
               <BsGlobe2 className="text-3xl mr-3 text-blue-500" />

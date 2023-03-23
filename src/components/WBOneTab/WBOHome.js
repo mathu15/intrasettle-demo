@@ -64,7 +64,7 @@ const WBOHome = ({ data, setData }) => {
 
   const dataStates = [
     {
-      label: "CBDC TRANSACTIONs",
+      label: "CBDC TRANSACTIONS",
       icon: "pi pi-fw pi-user",
     },
 /*

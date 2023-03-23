@@ -1,8 +1,20 @@
-const url = "https://sailsg1.thebsv.tech/";
+import { useToken } from "../../App/useToken";
+
+const url = "https://sailsg1.thebsv.tech";
+
+const usetoken = new useToken();
+
+const theuser = usetoken.getUser();
+
 class IssuanceServiceWBOB {
   sendcentraltosubscriber(assetid, assetname, participant, amount) {
     const payload = {
       method: "POST",
+      headers: {
+        Authorization: usetoken.getToken(),
+        "Content-Type": "application/json",
+      },
+
       body: JSON.stringify({
         asset: {
           assetid: assetid,
@@ -11,7 +23,7 @@ class IssuanceServiceWBOB {
         amount: amount,
         central: {
           accountholder: "central",
-          accountnumber: "CAC-CEN901-0001",
+          accountnumber: theuser.centralaccountnumber,
         },
         subscriber: {
           accountholder: "subscriber",
@@ -19,10 +31,7 @@ class IssuanceServiceWBOB {
         },
       }),
     };
-    return fetch(
-      url + "/centralbank/sendcentraltosubscriber",
-      payload
-    )
+    return fetch(url + "/centralbank/sendcentraltosubscriber", payload)
       .then((res) => res.json())
       .then((response) => {
         // alert("success");
@@ -35,6 +44,11 @@ class IssuanceServiceWBOB {
   sendsubscribertosubscriber(assetid, assetname, participant, amount) {
     const payload = {
       method: "POST",
+      headers: {
+        Authorization: usetoken.getToken(),
+        "Content-Type": "application/json",
+      },
+
       body: JSON.stringify({
         asset: {
           assetid: assetid,
@@ -43,7 +57,7 @@ class IssuanceServiceWBOB {
         amount: amount,
         subscriber1: {
           accountholder: "subscriber",
-          accountnumber: "CAC-SUB901-0001",
+          accountnumber: theuser.subcentralaccountnumber,
         },
         subscriber2: {
           accountholder: "subscriber",
@@ -51,10 +65,7 @@ class IssuanceServiceWBOB {
         },
       }),
     };
-    return fetch(
-      url + "/centralsettler/sendsubscribertosubscriber",
-      payload
-    )
+    return fetch(url + "/centralsettler/sendsubscribertosubscriber", payload)
       .then((res) => res.json())
       .then((response) => {
         // alert("success");
@@ -64,41 +75,18 @@ class IssuanceServiceWBOB {
         console.log("e", e);
       });
   }
-
+  /*
   getcentralaccount() {
     return fetch(url + "/centralbank/getcentralaccount").then(
       (res) => res.json()
     );
   }
-
-  mintasset(assetid, centralaccount, mintamount) {
-    const payload = {
-      method: "POST",
-      body: JSON.stringify({
-        asset: {
-          assetid: assetid,
-          issuetype: centralaccount,
-        },
-        amount: mintamount,
-      }),
-    };
-    return fetch(url + "/centralbank/mintasset", payload)
-      .then((res) => res.json())
-      .then((response) => {
-        // alert("success");
-        console.log(response);
-      })
-      .catch((e) => {
-        console.log("e", e);
-      });
-  }
-
   centralasset(assetid, centralaccount, mintamount) {
     const payload = {
       method: "POST",
       body: JSON.stringify({
         centralentity: {
-          entityid: "CAC-ENT901-0001",
+          entityid: theuser.entityid,  
         },
         issue: {
           enityname: "Asset authority",
@@ -121,7 +109,6 @@ class IssuanceServiceWBOB {
         console.log("e", e);
       });
   }
-
   entitymintasset(asset, centralaccount, mintamount) {
     const payload = {
       method: "POST",
@@ -133,7 +120,6 @@ class IssuanceServiceWBOB {
         amount: mintamount,
       }),
     };
-
     return fetch( url + "/centralbank/entitymintasset", payload)
       .then((res) => res.json())
       .then((response) => {
@@ -145,10 +131,15 @@ class IssuanceServiceWBOB {
         console.log("e", e);
       });
   }
-
+*/
   placebuyorder(price, amount) {
     const payload = {
       method: "POST",
+      headers: {
+        Authorization: usetoken.getToken(),
+        "Content-Type": "application/json",
+      },
+
       body: JSON.stringify({
         pairname: "Digital_USD-Digital_INR",
         side: "buyside",
@@ -156,7 +147,7 @@ class IssuanceServiceWBOB {
         amount: amount,
         traderaccount: {
           accountholder: "subscriber",
-          accountnumber: "CAC-SUB901-0001",
+          accountnumber: theuser.subcentralaccountnumber,
         },
         firstissuetype: "Digital_USD",
         secondissuetype: "Digital_INR",
@@ -175,10 +166,14 @@ class IssuanceServiceWBOB {
       });
   }
 
-
   placesellorder(price, amount) {
     const payload = {
       method: "POST",
+      headers: {
+        Authorization: usetoken.getToken(),
+        "Content-Type": "application/json",
+      },
+
       body: JSON.stringify({
         pairname: "Digital_USD-Digital_INR",
         side: "sellside",
@@ -186,14 +181,14 @@ class IssuanceServiceWBOB {
         amount: amount,
         traderaccount: {
           accountholder: "subscriber",
-          accountnumber: "CAC-SUB901-0001",
+          accountnumber: theuser.subcentralaccountnumber,
         },
         firstissuetype: "Digital_USD",
         secondissuetype: "Digital_INR",
       }),
     };
 
-    return fetch( url + "/exchange/createorder", payload)
+    return fetch(url + "/exchange/createorder", payload)
       .then((res) => res.json())
       .then((response) => {
         // alert("success");
@@ -204,7 +199,7 @@ class IssuanceServiceWBOB {
         console.log("e", e);
       });
   }
-
+  /*
   makeassetavailble(assetid, centralaccount, mintamount) {
     const payload = {
       asset: {
@@ -231,7 +226,6 @@ class IssuanceServiceWBOB {
         console.log("e", e);
       });
   }
-
   getassets() {
     const payload = {
       method: "POST",
@@ -243,6 +237,13 @@ class IssuanceServiceWBOB {
       (res) => res.json()
     );
   }
+*/
+
+  getassets() {
+    return fetch(url + "/centralbank/getentityassets/" + theuser.entityid).then(
+      (res) => res.json()
+    );
+  }
 
   getsubscribers() {
     const payload = {
@@ -251,10 +252,9 @@ class IssuanceServiceWBOB {
         entity: "test",
       }),
     };
-    return fetch(
-      url + "/centralbank/getsubscribers",
-      payload
-    ).then((res) => res.json());
+    return fetch(url + "/centralbank/getsubscribers", payload).then((res) =>
+      res.json()
+    );
   }
 
   getCentralToSubscriber() {
@@ -268,10 +268,9 @@ class IssuanceServiceWBOB {
         toaccount: "test",
       }),
     };
-    return fetch(
-      url + "/centralbank/sendcentraltosubscriber",
-      payload
-    ).then((res) => res.json());
+    return fetch(url + "/centralbank/sendcentraltosubscriber", payload).then(
+      (res) => res.json()
+    );
   }
 
   // get api for fx rates

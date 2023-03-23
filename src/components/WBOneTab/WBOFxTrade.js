@@ -6,6 +6,7 @@ import WBOFxTransferCBDC from "./FxTradeWBO/WBFxTransferCBDC";
 import WBFxRequestDVP from "./FxTradeWBO/WBFxRequestDVP";
 import WBFxTraderAssets from "./FxTradeWBO/WBFxTraderAssets";
 import WBFxCbdcStates from "./FxTradeWBO/WBFxCbdcStates";
+import WBOpCbdcStates from "./FxTradeWBO/WBOpCbdcStates";
 import WBFxMAC from "./FxTradeWBO/WBFxMAC";
 import WBFxCBDCAssets from "./FxTradeWBO/WBFxCBDCAssets";
 
@@ -14,7 +15,7 @@ const WBOFxTrade = ({ data, setData }) => {
   const [activetwo, setActivetwo] = useState(0);
   const [activethree, setActivethree] = useState(0);
 
- // Center operate
+  // Center operate
   const DisplayOne = () => {
     if (activeone === 0) {
       return <WBOFxTransferCBDC data={data} setData={setData} />;
@@ -23,7 +24,7 @@ const WBOFxTrade = ({ data, setData }) => {
     }
   };
 
-// Right side display
+  // Right side display
   const DisplayTwo = () => {
     if (activetwo === 0) {
       return <WBFxCBDCAssets data={data} setData={setData} />;
@@ -37,7 +38,7 @@ const WBOFxTrade = ({ data, setData }) => {
     if (activethree === 0) {
       return <WBFxCbdcStates data={data} setData={setData} />;
     } else if (activethree === 1) {
-      return <WBFxMAC data={data} setData={setData} />;
+      return <WBOpCbdcStates data={data} setData={setData} />;
     }
   };
 
@@ -65,11 +66,11 @@ const WBOFxTrade = ({ data, setData }) => {
 
   const dataStates = [
     {
-      label: "TRANSFER HISTORY",
+      label: "Operation transactions",
       icon: "pi text-2xl pi-fw pi-sort-alt",
     },
     {
-      label: "FX TRANSACTIONS",
+      label: "Trader transactions",
       icon: "pi text-2xl pi-fw pi-user",
     },
   ];

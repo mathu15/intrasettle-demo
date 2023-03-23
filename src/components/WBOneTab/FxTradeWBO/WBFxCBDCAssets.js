@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Chart } from "primereact/chart";
+
+import { IssuanceServiceWBFx } from "./IssuanceServiceWBFx";
 
 // page for displaying chaertdata
 const WBFxCBDCAssets = () => {
   // initail value for chart data
+  var issuanceservice = new IssuanceServiceWBFx();
 
   const [data, setData] = useState();
   // {
@@ -22,16 +25,19 @@ const WBFxCBDCAssets = () => {
   useEffect(() => {
     //fetch data from api
     const fetchData = async () => {
-      const url =
-        "https://sailsg1.thebsv.tech/centralbank/getbalance/CAC-SUB901-0001";
+      //      const url = "https://sailsg1.thebsv.tech/centralbank/getbalance/CAC-SUB901-0001";
       const dataset1 = [];
       const dataset2 = [];
+      /*
       await fetch(url)
         .then((data) => {
           console.log("api data", data);
           const res = data.json();
           return res;
         })
+	    */
+      issuanceservice
+        .getsubscribebankbalance()
         .then((res) => {
           console.log("ress", res.balance);
           for (const val of res.balance) {
@@ -105,9 +111,7 @@ const WBFxCBDCAssets = () => {
         <div className="grid p-fluid">
           <div className="col-12 md:col-6 ">
             <div className="card border-1 border-100 bg-gray-800  mt-3 card-w-title">
-              <p className="border-bottom-1 pb-2 text-3xl">
-                CBDC Types in Account
-              </p>
+              <p className="border-bottom-1 pb-2 text-3xl">CBDC in Account</p>
               <div className="list-disc">
                 {issuetype.map((cdata, index) => (
                   <li className="text-2xl pb-2" key={index}>
@@ -116,7 +120,7 @@ const WBFxCBDCAssets = () => {
                 ))}
               </div>
               <p className=" text-2xl font-bold text-yellow-500">
-                Number of Types:{" "}
+                Number :{" "}
                 <span className="text-3xl pb-2">{issuetype.length}</span>
               </p>
             </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useToken } from "../../components/App/useToken";
+import { BsBank } from "react-icons/bs";
 
 import { NavLink, Route, useHistory } from "react-router-dom";
 import { Menubar } from "primereact/menubar";
@@ -13,7 +14,7 @@ import WBOAccessControls from "../../components/WBOneTab/WBOAccessControls";
 import WBORequests from "../../components/WBOneTab/WBORequests";
 import WBOTreasury from "../../components/WBOneTab/WBOTreasury";
 
-import WBOMoneySwipeTrans from "../../components/WBOneTab/WBOMoneySwipetrans";
+import WBOIntrasettleTrans from "../../components/WBOneTab/WBOIntrasettleTrans";
 import WBOFxTrade from "../../components/WBOneTab/WBOFxTrade";
 import WBOOrderBook from "../../components/WBOneTab/WBOOrderBook";
 import WBOAtomicOrderBook from "../../components/WBOneTab/WBOAtomicOrderBook";
@@ -33,34 +34,34 @@ const WBankOne = () => {
   const wizardItems = [
     {
       label: "HOME",
-      icon: "pi pi-fw pi-th-large",
+      icon: "pi text-2xl text-yellow-600  pi-fw pi-th-large",
       command: () => history.push("/wholesale-bank-one"),
     },
 
     {
       label: "FX TRADE",
-      icon: "pi pi-fw pi-desktop",
+      icon: "pi text-2xl text-yellow-600 pi-fw pi-dollar",
       command: () => history.push("/wholesale-bank-one/fx-trade"),
     },
     {
       label: "ORDER BOOK",
-      icon: "pi pi-fw pi-desktop",
+      icon: "pi text-2xl text-yellow-600 pi-fw pi-desktop",
       command: () => history.push("/wholesale-bank-one/order-book"),
     },
     {
       label: "ATOMIC ORDER BOOK",
-      icon: "pi pi-fw pi-desktop",
+      icon: "pi text-2xl text-yellow-600 pi-fw pi-download",
       command: () => history.push("/wholesale-bank-one/atomic-order-book"),
     },
 
     {
       label: "MEMBER ACCESS",
-      icon: "pi pi-fw pi-cog",
+      icon: "pi text-2xl text-yellow-600 pi-fw pi-cog",
       command: () => history.push("/wholesale-bank-one/access-controls"),
     },
     {
       label: "TREASURY DASHBOARD",
-      icon: "pi pi-fw pi-chart-pie",
+      icon: "pi text-2xl text-yellow-600 pi-fw pi-chart-pie",
       command: () => history.push("/wholesale-bank-one/treasury-dashboard"),
     },
   ];
@@ -81,13 +82,12 @@ const WBankOne = () => {
         // model={items.wbone}
         end={
           <>
-            <i
-              className="pi text-2xl pi-home pr-2"
-              // style={{ fontSize: "1.2em" }}
-            ></i>
-            <span className="text-2xl">
-              The {user.organization} , powered by Intrasettle
-            </span>
+            <NavLink to="/wb-login">
+              <BsBank className="text-3xl mr-3 text-yellow-600" />
+              <span className="text-2xl text-white">
+                The {user.organization} , powered by Intrasettle
+              </span>
+            </NavLink>
           </>
         }
         className="pt-4 pb-4 layout-topbar"
@@ -126,7 +126,7 @@ const WBankOne = () => {
 
       <Route
         path={"/wholesale-bank-one/corda-dashboard"}
-        component={WBOMoneySwipeTrans}
+        component={WBOIntrasettleTrans}
       />
     </div>
   );

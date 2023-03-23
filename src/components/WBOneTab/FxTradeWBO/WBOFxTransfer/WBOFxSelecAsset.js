@@ -2,8 +2,10 @@ import React from "react";
 import { Dropdown } from "primereact/dropdown";
 import "../../../../components/dropdown.css";
 // select asset to transfer to another wholesale bank
-const WBOFxSelecAsset = ({ data, setData }) => {
-  const dropdownValues = [
+const WBOFxSelecAsset = ({ data, setData, assets, setAsset }) => {
+  const dropdownValues = assets;
+  /*
+	[
     { label: "Cash_BINR,ASSET-BND-0001" },
     { label: "Digital_BINR,ASSET-BND-0002" },
     { label: "Digital_USDT,ASSET-BND-0003" },
@@ -11,6 +13,7 @@ const WBOFxSelecAsset = ({ data, setData }) => {
     { label: "Cash_GBP,ASSET-BND-0005" },
     { label: "Cash_INR,ASSET-BND-0006" },
   ];
+  */
   const dropplaceholder = <h3>select</h3>;
   return (
     <div className="grid p-fluid">
@@ -21,7 +24,10 @@ const WBOFxSelecAsset = ({ data, setData }) => {
           </p>
           <Dropdown
             value={data.assetid}
-            onChange={(e) => setData({ ...data, assetid: e.target.value })}
+            onChange={(e) => {
+              setData({ ...data, assetid: e.target.value });
+              setAsset(e.target.value);
+            }}
             options={dropdownValues}
             optionLabel="label"
             placeholder={dropplaceholder}

@@ -9,7 +9,7 @@ const WBOFxEnterAmount = ({ data, setData }) => {
       <div className="flex-column align-items-center justify-content-center">
         <div className="flex-column align-items-center border-bottom-1 surface-border surface-overlay w-full mt-5">
           <p className=" text-center text-3xl font-bold text-blue-300 mr-3">
-            Maximum transaction value with this asset: {data.maxvalue}
+            Enter amount to send
           </p>
           <InputNumber
             id="amount"

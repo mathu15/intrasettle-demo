@@ -212,9 +212,9 @@ export default function Wblogin({ setToken }) {
               optionLabel="organization"
               value={wholesalebank}
               options={wholesalebanks}
-              onChange={(e) => {
-                setWholesalebank(e.target.value);
-              }}
+              onChange={(e) => 
+                setWholesalebank(e.target.value)
+              }
               placeholder="Select a central bank"
               className="text-2xl"
             />

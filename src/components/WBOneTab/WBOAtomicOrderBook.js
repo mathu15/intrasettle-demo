@@ -16,6 +16,7 @@ import WBOAtomicBuyOB from "./AtomicOrderbook/WBOAtomicBuyOB";
 const WBOAtomicOrderBook = ({ data, setData }) => {
   const [currencies, setcurrencies] = useState([]);
   const [pair, setpair] = useState("");
+  const [testpair, setTestpair] = useState("ABCD-DEFG");
   const [price, setprice] = useState([]);
   const [pastData, setpastData] = useState([]);
   const [sellData, setsellData] = useState([]);
@@ -32,12 +33,16 @@ const WBOAtomicOrderBook = ({ data, setData }) => {
   const [activesix, setActivesix] = useState(0);
   // const text = data.assetid.label;
 
-  const url = "https://thebsv.tech/exchange/getpairs";
+  const url = "https://sailsg1.thebsv.tech/exchange/getpairs";
   let ratesURL = `https://api.exchangerate.host/latest?base=USD&symbols=INR`;
 
   useEffect(() => {
+    setTestpair("CREA_CINR-CREA_USD");
+  }, []);
 
-    setpair('Digital_USD-Digital_INR');
+  useEffect(() => {
+    //    setpair('Digital_USD-Digital_INR');
+    setpair("CREA_CINR-CREA_CUSD");
     // let ratesURL = `https://api.exchangerate.host/latest?base=USD&symbols=INR`;
     const fetchRatesData = async () => {
       let ratesArr = [];
@@ -84,7 +89,7 @@ const WBOAtomicOrderBook = ({ data, setData }) => {
 
   useEffect(() => {
     console.log(pair);
-    let historicalDataURL = `https://thebsv.tech/atomicexchange/getbuyorders/${pair}`;
+    let historicalDataURL = `https://sailsg1.thebsv.tech/atomicexchange/getbuyorders/${pair}`;
     const fetchHistoricalData = async () => {
       let dataArr = [];
       await fetch(historicalDataURL)
@@ -99,7 +104,7 @@ const WBOAtomicOrderBook = ({ data, setData }) => {
 
     fetchHistoricalData();
 
-    let sellersURL = `https://thebsv.tech/atomicexchange/getsellorders/${pair}`;
+    let sellersURL = `https://sailsg1.thebsv.tech/atomicexchange/getsellorders/${pair}`;
     const fetchSellersData = async () => {
       let datasellArr = [];
       await fetch(sellersURL)
@@ -115,7 +120,7 @@ const WBOAtomicOrderBook = ({ data, setData }) => {
 
     fetchSellersData();
 
-    let buyobURL = `https://thebsv.tech/atomicexchange/getbuyorders/${pair}`
+    let buyobURL = `https://sailsg1.thebsv.tech/atomicexchange/getbuyorders/${pair}`;
     const fetchBuyOrderbookData = async () => {
       let dataArr = [];
       let ordersArr = [];
@@ -126,34 +131,31 @@ const WBOAtomicOrderBook = ({ data, setData }) => {
         return a > b ? 1 : -1;
       });
 
- 
       setbuyobData(last1);
     };
 
     fetchBuyOrderbookData();
 
-      let sellobURL = `https://thebsv.tech/atomicexchange/getsellorders/${pair}`
+    let sellobURL = `https://sailsg1.thebsv.tech/atomicexchange/getsellorders/${pair}`;
     const fetchSellOrderbookData = async () => {
       let ordersArr = [];
       let dataArr = [];
       await fetch(sellobURL)
         .then((res) => res?.json())
-          .then((data) => (dataArr = data.sellsideorders));
+        .then((data) => (dataArr = data.sellsideorders));
 
       const last1 = dataArr.slice(-10).sort((a, b) => {
         return a > b ? 1 : -1;
       });
-
 
       setsellobData(last1);
     };
 
     fetchSellOrderbookData();
 
-
-
-    let ordersURL = `https://thebsv.tech/atomicexchange/getorders/${pair}`;
-    let transactionsURL = "https://thebsv.tech/atomicexchange/getordertransactions/CAC-SUB901-0001";
+    let ordersURL = `https://sailsg1.thebsv.tech/atomicexchange/getorders/${pair}`;
+    let transactionsURL =
+      "https://sailsg1.thebsv.tech/atomicexchange/getordertransactions/CAC-SUB901-0001";
     const fetchOrdersData = async () => {
       let ordersArr = [];
       await fetch(transactionsURL)
@@ -183,7 +185,7 @@ const WBOAtomicOrderBook = ({ data, setData }) => {
   };
 
   const DisplayOne = () => {
-/*
+    /*
     if (activeone === 0) {
       return <WBOAtomicmarketDepth buy={pastData} sell={sellData} />;
     } else if (activeone === 1) {
@@ -193,20 +195,22 @@ const WBOAtomicOrderBook = ({ data, setData }) => {
   };
   const DisplayTwo = () => {
     if (activetwo === 0) {
-      return <WBOAtomicMatchHistory buy={pastData} sell={sellData} />;
+      return (
+        <WBOAtomicMatchHistory buy={pastData} sell={sellData} pair={pair} />
+      );
     }
   };
   const DisplayThree = () => {
     if (activethree === 0) {
-      return <WBOAtomicBuyOB data={buyobData} />;
+      return <WBOAtomicBuyOB data={buyobData} pair={pair} />;
     } else if (activethree === 1) {
-      return <WBOAtomicSellOB data={sellobData} />;
+      return <WBOAtomicSellOB data={sellobData} pair={pair} />;
     }
   };
 
   const DisplayFour = () => {
-      return <WBOAtomicCompleted data={allBuyData} />;
-/*
+    return <WBOAtomicCompleted data={allBuyData} pair={pair} />;
+    /*
     if (activefour === 0) {
       return <WBOAtomicOpenbuyOrder data={pastData} />;
     } else if (activefour === 1) {
@@ -219,9 +223,9 @@ const WBOAtomicOrderBook = ({ data, setData }) => {
 
   const DisplayFive = () => {
     if (activefive === 0) {
-      return <WBOAtomicBuyOrder price={price} />;
+      return <WBOAtomicBuyOrder price={price} pair={pair} />;
     } else if (activefive === 1) {
-      return <WBOAtomicSellOrder price={price} />;
+      return <WBOAtomicSellOrder price={price} testpair={testpair} />;
     }
   };
 

@@ -29,9 +29,7 @@ const WBOFxConfirmTransfer = ({ data, setData }) => {
           <p className="text-center text-3xl">
             Amount: {formatCurrency(data.amount)}
           </p>
-          <p className="text-center text-3xl">
-            Remaining after Transfer: {formatCurrency(data.total - data.amount)}
-          </p>
+          <p className="text-center text-3xl"></p>
         </div>
       </div>
     </div>

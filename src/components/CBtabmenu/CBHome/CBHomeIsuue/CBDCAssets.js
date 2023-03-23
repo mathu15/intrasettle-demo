@@ -101,7 +101,7 @@ const CBDCAssets = ({ data1, setData1, user, token }) => {
         <div className="grid p-fluid">
           <div className="col-12 md:col-6 ">
             <div className="card border-1 border-300 bg-gray-800  mt-3 card-w-title">
-              <p className="border-bottom-1 pb-2 text-3xl">CBDC Types</p>
+              <p className="border-bottom-1 pb-2 text-3xl">CBDC</p>
               {issuetype.map((cdata, index) => (
                 <div className="list-disc">
                   <li className="text-2xl pb-2" key={index}>

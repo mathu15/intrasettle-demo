@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Steps } from "primereact/steps";
 import { Button } from "primereact/button";
@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import InformationSubmitted from "../../CBtabmenu/CBHome/CBDCManager/DefCBDCType/InformationSubmitted";
 
-import { IssuanceServiceWBFx } from "./issuanceServiceWBFx";
+import { IssuanceServiceWBFx } from "./IssuanceServiceWBFx";
 
 import WBOFxReqSelecAsset from "./WBOFxRequest/WBOFxReqSelecAsset";
 import WBOFxReqEnterAmount from "./WBOFxRequest/WBOFxReqEnterAmount";
@@ -17,6 +17,7 @@ import WBOFxSelectParticipant from "./WBOFxRequest/WBOFxReqSelectParticipant";
 const WBFxRequestDVP = () => {
   //curent page for  steps is set to default index 0
   const [activeIndex, setActiveIndex] = useState(0);
+  const issuanceservice = new IssuanceServiceWBFx();
 
   //initial state fo user input
   const [data, setData] = useState({
@@ -58,12 +59,68 @@ const WBFxRequestDVP = () => {
     rate: 1,
   });
 
+  const [giveassets, setGiveassets] = useState([]);
+  const [getassets, setGetassets] = useState([]);
+  const [entityaccounts, setEntityaccounts] = useState([]);
+
+  useEffect(() => {
+    issuanceservice.getassets().then((data) => {
+      var xx = data.map(function (value) {
+        return {
+          label: value.issuetype,
+          id: value.id,
+          entityid: value.entityid,
+          issueaccountnumber: value.issueaccountnumber,
+          assetid: value.assetid,
+          issuetype: value.issuetype,
+          amount: value.amount,
+        };
+      });
+
+      setGiveassets(xx);
+      setGetassets(xx);
+    });
+
+    issuanceservice.getentityaccounts().then(async (data) => {
+      var subscribers = data.centralaccounts;
+      var xx = subscribers.map(function (value) {
+        return {
+          label: value.accountnumber,
+          id: value.id,
+          accountholder: value.accountholder,
+          accountnumber: value.accountnumber,
+        };
+      });
+
+      var thesubaccount = await issuanceservice.getsubscriberaccount();
+
+      var allowedlist = xx.filter(function (val) {
+        if (val.accountnumber != thesubaccount.accountnumber) return val;
+      });
+
+      setEntityaccounts(allowedlist);
+    });
+  }, []); //
+
   //setting active index tab for steps pages
   const pageDisplay = () => {
     if (activeIndex === 0) {
-      return <WBOFxReqSelecAsset data={data} setData={setData} />;
+      return (
+        <WBOFxReqSelecAsset
+          data={data}
+          setData={setData}
+          giveassets={giveassets}
+          getassets={getassets}
+        />
+      );
     } else if (activeIndex === 1) {
-      return <WBOFxSelectParticipant data={data} setData={setData} />;
+      return (
+        <WBOFxSelectParticipant
+          data={data}
+          setData={setData}
+          entityaccounts={entityaccounts}
+        />
+      );
     } else if (activeIndex === 2) {
       return <WBOFxReqEnterAmount data={data} setData={setData} />;
     } else if (activeIndex === 3) {

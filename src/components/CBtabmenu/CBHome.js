@@ -6,8 +6,9 @@ import CBBonds from "./CBHome/CBHomeIsuue/CBBonds";
 import CBDCStatus from "./CBHome/CBHomeIsuue/CBDCStatus";
 import CBDCMint from "./CBHome/CBHomeIsuue/CBDCMint";
 import CBDCAssets from "./CBHome/CBHomeIsuue/CBDCAssets";
+import CBHolding from "./CBHome/CBHomeIsuue/CBHolding";
 import CBTransfer from "./CBHome/CBHomeIsuue/CBTransfer";
-import {useToken}  from "../App/useToken";
+import { useToken } from "../App/useToken";
 
 const CBHome = ({ data, setData }) => {
   const [activeone, setActiveone] = useState(0);
@@ -28,9 +29,9 @@ const CBHome = ({ data, setData }) => {
   };
   const DisplayTwo = () => {
     if (activetwo === 0) {
-      return <CBBonds data={data} setData={setData} user={user} />;
-    } else if (activetwo === 1) {
       return <CBDCAssets data={data} setData={setData} user={user} />;
+    } else if (activetwo === 1) {
+      return <CBHolding data={data} setData={setData} user={user} />;
     }
   };
   const DisplayThree = () => {
@@ -53,12 +54,16 @@ const CBHome = ({ data, setData }) => {
   ];
 
   const dataItems = [
-    {
+    /*{
       label: "MINTABLE CBDC ASSETS",
       icon: "pi text-2xl pi-fw pi-dollar",
+    }, */
+    {
+      label: "LEDGER CBDC ",
+      icon: "pi text-2xl pi-fw pi-sun",
     },
     {
-      label: "LEDGER CBDC ASSETS",
+      label: "HOLDINGS",
       icon: "pi text-2xl pi-fw pi-sun",
     },
   ];
