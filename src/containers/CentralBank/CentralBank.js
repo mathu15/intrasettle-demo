@@ -75,16 +75,14 @@ const CentralBank = () => {
         start={
           <NavLink to="/">
             <img
-              src={"images/intrasettle_White.svg"}
+              src={"https://intrasettle.com/static/img/intrasettle_white.svg"}
               alt="logo"
               style={{ width: "12rem" }}
-              className="h-8rem w-full"
             />
           </NavLink>
         }
         // model={items.cbank}
         end={
-       
           <>
             <NavLink to="/cb-login">
               <BsGlobe2 className="text-3xl mr-3 text-blue-500" />

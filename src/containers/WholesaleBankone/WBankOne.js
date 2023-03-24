@@ -73,7 +73,7 @@ const WBankOne = () => {
         start={
           <NavLink to="/">
             <img
-              src={"images/intrasettle_White.svg"}
+              src={"https://intrasettle.com/static/img/intrasettle_white.svg"}
               alt="logo"
               style={{ width: "12rem" }}
             />
