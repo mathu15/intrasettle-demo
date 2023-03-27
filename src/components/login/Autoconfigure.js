@@ -107,6 +107,7 @@ export default function Autoconfigure({ setToken }) {
             onChange={(e) =>
               setEntityinfo({ ...entityinfo, entityemail: e.target.value })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -119,6 +120,7 @@ export default function Autoconfigure({ setToken }) {
             onChange={(e) =>
               setEntityinfo({ ...entityinfo, urlname: e.target.value })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -147,6 +149,7 @@ export default function Autoconfigure({ setToken }) {
             onChange={(e) =>
               setEntityinfo({ ...entityinfo, organization: e.target.value })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
 
@@ -159,6 +162,7 @@ export default function Autoconfigure({ setToken }) {
             onChange={(e) =>
               setEntityinfo({ ...entityinfo, role: e.target.value })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
             placeholder="Select a Role"
             id="role"
             className="text-2xl"
@@ -185,7 +189,5 @@ export default function Autoconfigure({ setToken }) {
         </div>
       </div>
     </div>
-
-    
   );
 }

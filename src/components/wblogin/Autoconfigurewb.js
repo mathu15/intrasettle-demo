@@ -123,6 +123,7 @@ export default function Autoconfigurewb({ setToken }) {
             onChange={(e) =>
               setEntityinfo({ ...entityinfo, subentityemail: e.target.value })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -138,6 +139,7 @@ export default function Autoconfigurewb({ setToken }) {
             onChange={(e) =>
               setEntityinfo({ ...entityinfo, subentityemail: e.target.value })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -150,6 +152,7 @@ export default function Autoconfigurewb({ setToken }) {
             onChange={(e) =>
               setEntityinfo({ ...entityinfo, urlname: e.target.value })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -164,6 +167,7 @@ export default function Autoconfigurewb({ setToken }) {
             onChange={(e) =>
               setEntityinfo({ ...entityinfo, entityname: e.target.value })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -178,6 +182,7 @@ export default function Autoconfigurewb({ setToken }) {
             onChange={(e) =>
               setEntityinfo({ ...entityinfo, organization: e.target.value })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
 
@@ -193,6 +198,7 @@ export default function Autoconfigurewb({ setToken }) {
             placeholder="Select a Role"
             id="role"
             className="text-2xl"
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -204,6 +210,7 @@ export default function Autoconfigurewb({ setToken }) {
             options={centralbanks}
             onChange={(e) => setCentralbank(e.target.value)}
             placeholder="Select centralbank"
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
       </div>

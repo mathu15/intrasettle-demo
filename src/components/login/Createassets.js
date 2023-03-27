@@ -109,6 +109,7 @@ export default function Createassets({ setToken }) {
             placeholder="Select a Asset"
             id="assets"
             className="text-2xl"
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -119,6 +120,7 @@ export default function Createassets({ setToken }) {
             type="number"
             placeholder="amount"
             onChange={(e) => setAmount(e.target.value)}
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -129,6 +131,7 @@ export default function Createassets({ setToken }) {
             type="text"
             // placeholder="New Symbol"
             onChange={(e) => setNewsymbol(e.target.value)}
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
       </div>

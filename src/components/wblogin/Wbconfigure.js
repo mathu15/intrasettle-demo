@@ -135,6 +135,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, subentityemail: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -147,6 +148,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, entityemail: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -157,6 +159,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, urlname: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -169,6 +172,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, entityid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -181,6 +185,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, subscriberid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -193,6 +198,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, subtraderid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -207,6 +213,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, subentityid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -222,6 +229,7 @@ export default function Wbconfigure({ setToken }) {
                   entityaccountnumber: e.target.value,
                 })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -237,6 +245,7 @@ export default function Wbconfigure({ setToken }) {
                   centralaccountnumber: e.target.value,
                 })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -254,6 +263,7 @@ export default function Wbconfigure({ setToken }) {
                   subcentralaccountnumber: e.target.value,
                 })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -266,6 +276,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, issuerid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -276,6 +287,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, funderid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -288,6 +300,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, systemid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -300,6 +313,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, entityname: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -312,6 +326,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, subentityname: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -325,6 +340,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, marker: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -337,6 +353,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, organization: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -349,6 +366,7 @@ export default function Wbconfigure({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, role: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -359,6 +377,7 @@ export default function Wbconfigure({ setToken }) {
               options={centralbanks}
               onChange={(e) => setCentralbank(e.target.value)}
               placeholder="Select centralbank"
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>

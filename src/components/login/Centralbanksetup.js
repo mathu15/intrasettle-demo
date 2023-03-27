@@ -110,6 +110,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, entityemail: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -120,6 +121,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, urlname: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -132,6 +134,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, entityid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -147,6 +150,7 @@ export default function Centralbanksetup({ setToken }) {
                   entityaccountnumber: e.target.value,
                 })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -164,6 +168,7 @@ export default function Centralbanksetup({ setToken }) {
                   centralaccountnumber: e.target.value,
                 })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -174,6 +179,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, issuerid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -186,6 +192,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, funderid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -196,6 +203,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, systemid: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -210,6 +218,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, entityname: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -222,6 +231,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, centraladdress: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -236,6 +246,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, entitycode: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -248,6 +259,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, entityaddress: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -262,6 +274,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, centraladdress: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -272,6 +285,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, marker: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>
@@ -286,6 +300,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, organization: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field col text-2xl">
@@ -296,6 +311,7 @@ export default function Centralbanksetup({ setToken }) {
               onChange={(e) =>
                 setEntityinfo({ ...entityinfo, role: e.target.value })
               }
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>

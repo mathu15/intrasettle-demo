@@ -217,6 +217,7 @@ export default function Wblogin({ setToken }) {
               }
               placeholder="Select a central bank"
               className="text-2xl"
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field text-2xl">
@@ -228,6 +229,7 @@ export default function Wblogin({ setToken }) {
               value={wholesalebank.email}
               // placeholder="email"
               onChange={(e) => setEmail(e.target.value)}
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field text-2xl">
@@ -238,6 +240,7 @@ export default function Wblogin({ setToken }) {
               type="password"
               // placeholder="password"
               onChange={(e) => setPassword(e.target.value)}
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field text-2xl">
@@ -248,6 +251,7 @@ export default function Wblogin({ setToken }) {
               id="organization"
               // placeholder="organization"
               onChange={(e) => setOrganization(e.target.value)}
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
           <div className="field text-2xl">
@@ -260,6 +264,7 @@ export default function Wblogin({ setToken }) {
               placeholder="Select a Role"
               id="role"
               className="text-2xl"
+              style={{ height: "4rem", fontSize: "2.0rem" }}
             />
           </div>
         </div>

@@ -128,6 +128,7 @@ export default function Transmitassets({ setToken }) {
             placeholder="Select a Asset"
             id="assets"
             className="text-2xl"
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -138,6 +139,7 @@ export default function Transmitassets({ setToken }) {
             type="number"
             placeholder="amount"
             onChange={(e) => setAmount(e.target.value)}
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -150,6 +152,7 @@ export default function Transmitassets({ setToken }) {
             onChange={(e) =>
               setEntityinfo({ ...entityinfo, entityid: e.target.value })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -167,6 +170,7 @@ export default function Transmitassets({ setToken }) {
                 entityaccountnumber: e.target.value,
               })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
         <div className="field text-2xl">
@@ -184,6 +188,7 @@ export default function Transmitassets({ setToken }) {
                 centralaccountnumber: e.target.value,
               })
             }
+            style={{ height: "4rem", fontSize: "2.0rem" }}
           />
         </div>
       </div>
@@ -216,7 +221,5 @@ export default function Transmitassets({ setToken }) {
         </div>
       </div>
     </div>
-
-    
   );
 }
